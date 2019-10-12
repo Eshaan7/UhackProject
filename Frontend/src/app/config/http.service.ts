@@ -55,8 +55,7 @@ export abstract class HttpService<T> {
     const request: Observable<any> = this.http.get(this.buildUrl(undefined, url), HttpService.buildRequestOptions(query));
     return new Promise((resolve, reject) => request.subscribe(res => {
       // Dexie - indexDB
-      console.log("RES", res); // res.data[0]._links
-      const obj = { id: res.data[0].id, name: res.data[0].name, email: res.data[0].email };
+      const obj = { id: res.id, name: res.username, email: res.email };
       this.indexDB.addOrReplace('users', obj);
       return resolve(res);
     }, (err) => {

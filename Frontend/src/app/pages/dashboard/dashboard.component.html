@@ -1,21 +1,49 @@
 <div class="row">
 
   <div class="col-12 mb-3">
-    <h2 class="mb-1" *ngIf="user">
-      Hello there, {{user?.name}}
+    <h2 class="mb-1" *ngIf="userService?.user">
+      Hello there, {{userService?.user?.username}}
     </h2>
     <p class="paragraph">Here is some information we gathered.</p>
   </div>
 
-  <nb-card class="col-6">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>{{ userService?.user?.where_from }}</nb-card-header>
+      <nb-card-body>
+        <ngx-d3-advanced-pie [graphData]="graphData1"></ngx-d3-advanced-pie>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>{{ userService?.user?.where_to }}</nb-card-header>
+      <nb-card-body>
+        <ngx-d3-advanced-pie [graphData]="graphData2"></ngx-d3-advanced-pie>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-8">
+    <nb-card>
+      <nb-card-header>Comparison</nb-card-header>
+      <nb-card-body>
+        <ngx-chartjs-bar-horizontal [horizontalbarData]="horizontalbarData"></ngx-chartjs-bar-horizontal>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>
+
+ <!-- <nb-card class="col-6">
     <nb-card-header>
       <h3>Housing</h3>
       <div class="subtitle">Consumption</div>
     </nb-card-header>
     <nb-card-body>
-      <ng-container>
-      </ng-container>
+      <h4>
+        {{ userService?.housing?.prediction1  | currency: 'USD' }}
+      </h4>
     </nb-card-body>
-  </nb-card>
-
-</div>
+  </nb-card> -->

@@ -22,8 +22,7 @@ export class Interceptor implements HttpInterceptor {
       return this.authService.isAuthenticatedOrRefresh()
         .pipe(
           switchMap(authenticated => {
-            // authenticated
-            if (true) {
+            if (authenticated) {
               return this.authService.getToken().pipe(
                 switchMap((token: NbAuthToken) => {
                   const JWT = token.getValue();

@@ -12,6 +12,28 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+		title: 'Expenses',
+		icon: 'list-outline',
+		children: [
+			{
+				title: 'Housing',
+				link: '/pages/expenses-management/housing',
+			},
+			{
+				title: 'Food',
+				link: '/pages/expenses-management/food',
+			},
+			{
+				title: 'Grocery',
+				link: '/pages/expenses-management/grocery',
+			},
+			{
+				title: 'Savings',
+				link: '/pages/expenses-management/savings',
+			},
+		],
+	},
+  {
     title: 'Auth',
     icon: 'lock-outline',
     children: [

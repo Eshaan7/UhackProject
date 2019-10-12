@@ -5,6 +5,7 @@ import {NbAuthService} from '@nebular/auth';
 import {Observable, Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import { IndexedDbService } from '../../config/indexdb.service';
+import { Housing } from '../models/models';
 //import {User} from '../models/user';
 
 
@@ -13,10 +14,12 @@ import { IndexedDbService } from '../../config/indexdb.service';
 })
 export class UserService extends HttpService<any> {
   user: any = {id: null};
+  housing: Housing = {} as Housing;
   redirectUrl: string;
   statuses: any;
 
   user$: Subject<any> = new Subject() as Subject<any>;
+  housing$: Subject<any> = new Subject() as Subject<any>;
 
   constructor(private httpClient: HttpClient, private router: Router, private nbAuth: NbAuthService, public indexDB: IndexedDbService) {
     super(httpClient, {
@@ -35,10 +38,11 @@ export class UserService extends HttpService<any> {
   async init() {
     try {
       const user = await this.getUser();
-      this.user = user.data[0];
-  
-      // this.messagingService.requestPermission(this.user.id);
+      const housing = await this.getHousingData();
+      this.user = user;
+      this.housing = housing;
       this.user$.next(this.user);
+      this.housing$.next(this.housing);
     } catch (e) {
       console.error(e);
       this.logOut();
@@ -48,6 +52,11 @@ export class UserService extends HttpService<any> {
   async getUser(): Promise<any> {
     return this.query();
   }
+
+
+	async getHousingData(): Promise<any> {
+		return this.query({}, 'housing');
+	}
 
   logOut() {
     this.nbAuth.logout('email').subscribe(() => {

@@ -12,6 +12,7 @@ import {
   NbSelectModule,
   NbIconModule,
   NbThemeModule,
+  NbInputModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -39,6 +40,8 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { FormsModule } from '@angular/forms';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -51,6 +54,7 @@ const NB_MODULES = [
   NbSecurityModule,
   NbButtonModule,
   NbSelectModule,
+  NbInputModule,
   NbIconModule,
   NbEvaIconsModule,
 ];
@@ -63,6 +67,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  DataTableComponent,
 ];
 const PIPES = [
   CapitalizePipe,
@@ -73,7 +78,7 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [CommonModule, ...NB_MODULES, FormsModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
 })

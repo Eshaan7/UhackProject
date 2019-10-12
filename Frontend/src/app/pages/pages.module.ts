@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { LandingPageModule } from './landing-page/landing-page.module';
+import { ExpensesModule } from './expenses/expenses.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { LandingPageModule } from './landing-page/landing-page.module';
     ThemeModule,
     NbMenuModule,
     DashboardModule,
-    LandingPageModule
+    LandingPageModule,
+    ExpensesModule
   ],
   declarations: [
     PagesComponent,

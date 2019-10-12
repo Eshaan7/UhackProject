@@ -1,0 +1,113 @@
+<div class="mt-4 mb-3 d-flex align-items-end justify-content-between flex-nowrap">
+
+	<!-- <div class="d-flex justify-content-between">
+		<div>
+			<ng-container *ngFor="let filter of filters">
+				<nb-checkbox #checked (change)="applyFilter(filter, checked?.value)" class="mr-2">
+					{{filter.name}}
+				</nb-checkbox>
+			</ng-container>
+		</div>
+	</div> -->
+
+<!-- 
+	<ng-container *ngIf="searchFields.length">
+
+		<button #pop1="ngbPopover" [autoClose]="false" [ngbPopover]="filterTemp"
+				[placement]="'bottom-right'" [popoverClass]="'pop'" class="bg-light radius-6"
+				nbButton outline
+				shape="rectangle" status="primary">
+			<nb-icon icon="options-2-outline"></nb-icon>
+		</button>
+
+
+		<ng-template #filterTemp>
+			<div class="p-3 row d-flex align-items-center flex-column" style="width: 400px">
+				<ng-container *ngFor="let field of searchFields">
+					<input [(ngModel)]="field.term" [placeholder]="field.name" class="col-12 mb-3"
+						   nbInput shape="rectangle" size="tiny" type="text">
+				</ng-container>
+
+				<div class="mt-3">
+					<button (click)="loadData();pop1.close()" nbButton size="small" status="success">Apply</button>
+				</div>
+			</div>
+		</ng-template>
+
+
+	</ng-container> -->
+</div>
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+	<table class="table table-borderless bg-white data-table">
+		<thead class="">
+			<tr class="font-weight-bold">
+				<th *ngFor="let column of columns">{{ column?.displayName }}</th>
+				<th *ngIf="infoIcon">View</th>
+			</tr>
+		</thead>
+		<tbody class="fixed-height">
+			<ng-container *ngFor="let row of data">
+				<tr>
+					<ng-container *ngFor="let column of columns">
+						<td [innerHTML]="column.displayFn ? column.displayFn(row, column) : row[column.name]"></td>
+					</ng-container>
+
+					<td *ngIf="infoIcon">
+						<div (click)="view.emit(row)" class="icon">
+							<i class="eva-icon-container">
+								<nb-icon [icon]="'info-outline'"></nb-icon>
+							</i>
+						</div>
+					</td>
+					<td *ngIf="disableIcon">
+						<div (click)="disable(row, disableColumn)" class="icon cursor-pointer">
+							<i class="eva-icon-container">
+								<ng-container *ngIf="row[disableColumn]; else disabled">
+									<nb-icon [icon]="'toggle-right-outline'"
+										[options]="{ animationType: 'pulse', fill: 'green', width: 24, height: 24 }">
+									</nb-icon>
+
+								</ng-container>
+								<ng-template #disabled>
+									<nb-icon [icon]="'toggle-left-outline'"
+										[options]="{ animationType: 'pulse', fill: 'red', width: 24, height: 24 }">
+									</nb-icon>
+								</ng-template>
+
+							</i>
+						</div>
+					</td>
+				</tr>
+			</ng-container>
+
+		</tbody>
+	</table>
+
+	<table *ngIf="footer" class="table table-footer">
+		<thead class="thead-light">
+			<tr>
+				<th class="p-2 d-flex justify-content-between align-items-end">
+					<div [ngClass]="page === 1? 'disabled':''" class="icon">
+						<i (click)="previousPage()" class="eva-icon-container previous-page">
+							<nb-icon icon="arrow-left-outline"></nb-icon>
+						</i>
+					</div>
+					<div>
+						PAGE
+						<input [(ngModel)]="currPage" [max]="totalPages" [value]="page" class="ml-3 mr-1" min="1"
+							   nbInput type="number">
+						(max: {{totalPages}})
+						<button (click)="setPage()" [shape]="'rectangle'" class="ml-3" nbButton size="small">GO</button>
+					</div>
+					<div [ngClass]="page === totalPages? 'disabled':''" class="icon">
+						<i (click)="nextPage()" class="eva-icon-container next-page">
+							<nb-icon icon="arrow-right-outline"></nb-icon>
+						</i>
+					</div>
+				</th>
+			</tr>
+		</thead>
+	</table>
+</div>

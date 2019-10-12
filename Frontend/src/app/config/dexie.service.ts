@@ -7,7 +7,7 @@ export class DexieService extends Dexie {
     super('AppDatabase');
     
     this.version(1).stores({
-        users: '++id,name',
+        users: '++id,username,email',
     });
   }
 }

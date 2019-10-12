@@ -1,5 +1,7 @@
 export interface User {
   id:string;
   email:string;
-  name:string;
+  username:string;
+  where_from: string;
+  where_to: string;
 }
