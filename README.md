@@ -1,6 +1,6 @@
 # Uhack 2019 Project
 
-RESTful API in Flask, Angular 8 (ngx-admin +  Nebular) for frontend. ML models for housing data.
+RESTful API in Flask, Angular 8 (ngx-admin +  Nebular) for frontend. ML models,regression and bayes-classification, for housing data.
 
 ## The Why
 
